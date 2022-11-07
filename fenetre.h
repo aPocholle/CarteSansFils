@@ -15,6 +15,11 @@ public:
     Fenetre(QWidget *parent = nullptr);
     ~Fenetre();
 
+private slots:
+    void on_But_Con_clicked();
+
+    void on_But_Quit_clicked();
+
 private:
     Ui::Fenetre *ui;
 };
