@@ -3,6 +3,15 @@
 
 #include <QMainWindow>
 
+#include "MfErrNo.h"
+#include "Core.h"
+#include "Sw_Device.h"
+#include "Sw_Mf_Classic.h"
+#include "Sw_Poll.h"
+#include "Sw_ISO14443A-3.h"
+#include "TypeDefs.h"
+#include "Tools.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Fenetre; }
 QT_END_NAMESPACE

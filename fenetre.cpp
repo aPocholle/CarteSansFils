@@ -10,6 +10,7 @@
 #include "Tools.h"
 #include <QtGui>
 
+
 Fenetre::Fenetre(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Fenetre)
@@ -23,6 +24,9 @@ Fenetre::~Fenetre()
 }
 
 ReaderName MonLecteur;
+
+
+
 void Fenetre::on_But_Con_clicked()
 {
     int16_t status = MI_OK;
@@ -31,7 +35,14 @@ void Fenetre::on_But_Con_clicked()
     status = OpenCOM(&MonLecteur);
     qDebug() << "OpenCOM" << status;
 
+
     status = Version(&MonLecteur);
+    ui->Affichage->setText(MonLecteur.version);
+    ui->Affichage->update();
+
+
+    status = Version(&MonLecteur);
+
     ui->Affichage->setText(MonLecteur.version);
     ui->Affichage->update();
 
