@@ -34,6 +34,7 @@ void Fenetre::on_But_Con_clicked()
     MonLecteur.Type = ReaderCDC;
     MonLecteur.device = 0;
     status = OpenCOM(&MonLecteur);
+    qDebug() << "status du reader" << status;
     if(status == 0){
         sT = true;
     }
@@ -47,6 +48,7 @@ void Fenetre::on_But_Con_clicked()
 
     ui->Affichage->setText(MonLecteur.version);
     ui->Affichage->update();
+
 }
 
 void Fenetre::on_But_Quit_clicked()
@@ -61,18 +63,24 @@ void Fenetre::on_But_Quit_clicked()
     }
     status = CloseCOM(&MonLecteur);
     qApp->quit();
+
 }
 
 void Fenetre::on_buton_ID_clicked()
 {
-    QString Nom = ui->Nom->toPlainText();
-    QString Prenom = ui->Prenom->toPlainText();
+    nom = ui->Nom->toPlainText();
+    prenom = ui->Prenom->toPlainText();
+
+    while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len));
+
 }
 
 void Fenetre::on_buton_Payer_clicked()
 {
-    QString Unite = ui->NB_unit->toPlainText();
-    int nb_unite = Unite.toInt();
+    QString unite = ui->NB_unit->toPlainText();
+    nb_unite = unite.toInt();
 
 
 }
+
+

@@ -23,6 +23,7 @@ class Fenetre : public QMainWindow
 public:
     Fenetre(QWidget *parent = nullptr);
     ~Fenetre();
+    int card_read(uint8_t sect_count);
 
 private slots:
     void on_But_Con_clicked();
@@ -31,7 +32,23 @@ private slots:
 
     void on_buton_ID_clicked();
 
+    void on_buton_Payer_clicked();
+
 private:
     Ui::Fenetre *ui;
+    QString nom;
+    QString prenom;
+    int nb_unite;
+    int16_t status = MI_OK;
+    uint8_t i;
+    char s_buffer[64];
+    uint8_t atq[2];
+    uint8_t sak[1];
+    uint8_t uid[12];
+    uint16_t uid_len = 12;
+    uint8_t sect_count = 0;
+    BOOL bench = FALSE;
+    uint8_t bloc_count, bloc, sect;
+    uint8_t data[240] = {0};
 };
 #endif // FENETRE_H
