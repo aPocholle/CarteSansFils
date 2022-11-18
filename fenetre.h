@@ -29,6 +29,13 @@ private slots:
 
     void on_But_Quit_clicked();
 
+<<<<<<< Updated upstream
+=======
+    void on_buton_ID_clicked();
+
+    void on_buton_Payer_clicked();
+
+>>>>>>> Stashed changes
 private:
     Ui::Fenetre *ui;
 };

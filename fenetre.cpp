@@ -56,3 +56,22 @@ void Fenetre::on_But_Quit_clicked()
     status = CloseCOM(&MonLecteur);
     qApp->quit();
 }
+<<<<<<< Updated upstream
+=======
+
+void Fenetre::on_buton_ID_clicked()
+{
+    QString Nom = ui->Nom->toPlainText();
+    QString Prenom = ui->Prenom->toPlainText();
+}
+
+void Fenetre::on_buton_Payer_clicked()
+{
+    QString Unite = ui->NB_unit->toPlainText();
+    int nb_unite = Unite.toInt();
+    int decr = ui->nb_unit_decr->value();
+    nb_unite=nb_unite-decr;
+    ui->NB_unit->setText(QString::number(nb_unite));
+
+}
+>>>>>>> Stashed changes
