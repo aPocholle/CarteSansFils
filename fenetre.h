@@ -29,6 +29,8 @@ private slots:
 
     void on_But_Quit_clicked();
 
+    void on_buton_ID_clicked();
+
 private:
     Ui::Fenetre *ui;
 };
