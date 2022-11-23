@@ -23,7 +23,7 @@ class Fenetre : public QMainWindow
 public:
     Fenetre(QWidget *parent = nullptr);
     ~Fenetre();
-    int card_read(uint8_t sect_count);
+    void reading();
 
 private slots:
     void on_But_Con_clicked();
@@ -48,9 +48,10 @@ private:
     uint8_t sak[1];
     uint8_t uid[12];
     uint16_t uid_len = 12;
-    uint8_t sect_count = 0;
+    uint8_t sect_count = 1;
     BOOL bench = FALSE;
     uint8_t bloc_count, bloc, sect;
     uint8_t data[240] = {0};
+    uint8_t offset;
 };
 #endif // FENETRE_H
