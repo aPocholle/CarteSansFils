@@ -29,16 +29,23 @@ private slots:
 
     void on_But_Quit_clicked();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Alexy
     void on_buton_ID_clicked();
 
     void on_buton_Payer_clicked();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Alexy
     void on_but_Carte_clicked();
 
 private:
     Ui::Fenetre *ui;
+<<<<<<< HEAD
     int16_t status = MI_OK;
         uint8_t i;
         char s_buffer[64];
@@ -47,5 +54,7 @@ private:
         uint8_t uid[12];
         uint16_t uid_len = 12;
         uint8_t sect_count = 0;
+=======
+>>>>>>> Alexy
 };
 #endif // FENETRE_H

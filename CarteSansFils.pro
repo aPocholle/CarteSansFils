@@ -28,3 +28,8 @@ unix|win32: LIBS += -L$$PWD/LIB/ -lODALID_Education
 
 INCLUDEPATH += $$PWD/LIB
 DEPENDPATH += $$PWD/LIB
+
+unix|win32: LIBS += -L$$PWD/LIB/ -lODALID_Education
+
+INCLUDEPATH += $$PWD/LIB
+DEPENDPATH += $$PWD/LIB
