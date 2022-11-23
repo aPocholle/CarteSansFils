@@ -24,6 +24,9 @@ Fenetre::~Fenetre()
 }
 
 ReaderName MonLecteur;
+int card_read(uint8_t sect_count);
+
+BOOL bench = FALSE;
 
 
 
@@ -56,8 +59,7 @@ void Fenetre::on_But_Quit_clicked()
     status = CloseCOM(&MonLecteur);
     qApp->quit();
 }
-<<<<<<< Updated upstream
-=======
+
 
 void Fenetre::on_buton_ID_clicked()
 {
@@ -74,4 +76,11 @@ void Fenetre::on_buton_Payer_clicked()
     ui->NB_unit->setText(QString::number(nb_unite));
 
 }
->>>>>>> Stashed changes
+
+
+void Fenetre::on_but_Carte_clicked()
+{MonLecteur.Type = ReaderCDC;
+    MonLecteur.device = 0;
+     while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len));
+     qDebug() << status;
+}

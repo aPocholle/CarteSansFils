@@ -29,14 +29,23 @@ private slots:
 
     void on_But_Quit_clicked();
 
-<<<<<<< Updated upstream
-=======
+
     void on_buton_ID_clicked();
 
     void on_buton_Payer_clicked();
 
->>>>>>> Stashed changes
+
+    void on_but_Carte_clicked();
+
 private:
     Ui::Fenetre *ui;
+    int16_t status = MI_OK;
+        uint8_t i;
+        char s_buffer[64];
+        uint8_t atq[2];
+        uint8_t sak[1];
+        uint8_t uid[12];
+        uint16_t uid_len = 12;
+        uint8_t sect_count = 0;
 };
 #endif // FENETRE_H
