@@ -30,12 +30,12 @@ int card_read(uint8_t sect_count);
 BOOL bench = FALSE;
 
 =======
+boolean sT = false;
 >>>>>>> Alexy
 
 
 void Fenetre::on_But_Con_clicked()
 {
-    int16_t status = MI_OK;
     MonLecteur.Type = ReaderCDC;
     MonLecteur.device = 0;
     status = OpenCOM(&MonLecteur);
@@ -49,6 +49,16 @@ void Fenetre::on_But_Con_clicked()
 
 
 =======
+    qDebug() << "status du reader" << status;
+    if(status == 0){
+        sT = true;
+    }
+    if(sT){
+        qDebug() << "Connecté";
+    }
+    else{
+        qDebug() << "Deconnecté";
+    }
 >>>>>>> Alexy
     status = Version(&MonLecteur);
 

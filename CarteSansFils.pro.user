@@ -8,6 +8,10 @@
   <value type="QByteArray">{66ef1c6f-370f-4fdb-a1c9-78d8fc717fd7}</value>
 =======
 <!-- Written by QtCreator 4.13.3, 2022-11-18T11:58:48. -->
+<qtcreator>
+ <data>
+  <variable>EnvironmentId</variable>
+  <value type="QByteArray">{7bb426d9-7e55-4226-a385-36a2a7dd063a}</value>
 >>>>>>> Alexy
  </data>
  <data>
@@ -104,6 +108,8 @@
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ai770741\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ai770741/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
 =======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ap576391\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ap576391/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
 >>>>>>> Alexy
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -159,6 +165,8 @@
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ai770741\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Release</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ai770741/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Release</value>
 =======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ap576391\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ap576391/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Release</value>
 >>>>>>> Alexy
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -214,6 +222,8 @@
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ai770741\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Profile</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ai770741/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Profile</value>
 =======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ap576391\Documents\GitHub\build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ap576391/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Profile</value>
 >>>>>>> Alexy
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -342,6 +352,8 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/ai770741/Documents/GitHub/CarteSansFils/CarteSansFils.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/ai770741/Documents/GitHub/CarteSansFils/CarteSansFils.pro</value>
 =======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/ap576391/Documents/GitHub/CarteSansFils/CarteSansFils.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/ap576391/Documents/GitHub/CarteSansFils/CarteSansFils.pro</value>
 >>>>>>> Alexy
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
@@ -356,6 +368,7 @@
 <<<<<<< HEAD
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/ai770741/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
 =======
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/ap576391/Documents/GitHub/build-CarteSansFils-Desktop_Qt_5_15_2_MinGW_64_bit-Debug</value>
 >>>>>>> Alexy
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
