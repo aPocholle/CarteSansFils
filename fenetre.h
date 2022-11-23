@@ -34,6 +34,8 @@ private slots:
 
     void on_buton_Payer_clicked();
 
+    void on_but_Carte_clicked();
+
 private:
     Ui::Fenetre *ui;
     QString nom;

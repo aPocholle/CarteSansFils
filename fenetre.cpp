@@ -29,8 +29,6 @@ boolean sT = false;
 
 void Fenetre::on_But_Con_clicked()
 {
-    int16_t status = MI_OK;
-
     MonLecteur.Type = ReaderCDC;
     MonLecteur.device = 0;
     status = OpenCOM(&MonLecteur);
@@ -48,6 +46,14 @@ void Fenetre::on_But_Con_clicked()
 
     ui->Affichage->setText(MonLecteur.version);
     ui->Affichage->update();
+
+    status = Version(&MonLecteur);
+        if (status == MI_OK){
+            qDebug() << "Reader firwmare is " << MonLecteur.version;
+            qDebug() << "Reader serial is " << MonLecteur.serial[0] << MonLecteur.serial[1] << MonLecteur.serial[2] << MonLecteur.serial[3];
+            qDebug() << "Reader stack is " << MonLecteur.stack;
+        }
+     status = LEDBuzzer(&MonLecteur, LED_YELLOW_ON);
 
 }
 
@@ -71,7 +77,6 @@ void Fenetre::on_buton_ID_clicked()
     nom = ui->Nom->toPlainText();
     prenom = ui->Prenom->toPlainText();
 
-    while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len));
 
 }
 
@@ -84,3 +89,20 @@ void Fenetre::on_buton_Payer_clicked()
 }
 
 
+
+void Fenetre::on_but_Carte_clicked()
+{
+    RF_Power_Control(&MonLecteur, TRUE, 0);
+    while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len)){
+        qDebug() << "En attente d'une carte";
+    }; // en attente d'une carte
+    if (status != MI_OK){
+            qDebug() << "No available tag in RF field";
+        }
+
+        qDebug() << "Tag found: UID= ";
+        for (i = 0; i < uid_len; i++)
+             qDebug() << uid[i];
+        qDebug() << "ATQ= " << atq[1] << atq[0];
+        qDebug() << "SAK= " << sak[0];
+}
