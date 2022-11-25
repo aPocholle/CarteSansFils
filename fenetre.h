@@ -24,6 +24,10 @@ public:
     Fenetre(QWidget *parent = nullptr);
     ~Fenetre();
     void reading();
+    void writing();
+    void buzzer();
+    void decrement(uint32_t value);
+    void increment(uint32_t value);
 
 private slots:
     void on_But_Con_clicked();
@@ -36,22 +40,17 @@ private slots:
 
     void on_but_Carte_clicked();
 
+    void on_buton_Charger_clicked();
+
 private:
+    ReaderName MonLecteur;
+    boolean sT = false;
     Ui::Fenetre *ui;
-    QString nom;
-    QString prenom;
-    int nb_unite;
     int16_t status = MI_OK;
-    uint8_t i;
     char s_buffer[64];
     uint8_t atq[2];
     uint8_t sak[1];
     uint8_t uid[12];
     uint16_t uid_len = 12;
-    uint8_t sect_count = 1;
-    BOOL bench = FALSE;
-    uint8_t bloc_count, bloc, sect;
-    uint8_t data[240] = {0};
-    uint8_t offset;
 };
 #endif // FENETRE_H
