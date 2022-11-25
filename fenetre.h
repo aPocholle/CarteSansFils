@@ -28,6 +28,7 @@ public:
     void buzzer();
     void decrement(uint32_t value);
     void increment(uint32_t value);
+    void backup();
 
 private slots:
     void on_But_Con_clicked();
@@ -41,6 +42,8 @@ private slots:
     void on_but_Carte_clicked();
 
     void on_buton_Charger_clicked();
+
+    void on_but_Restore_clicked();
 
 private:
     ReaderName MonLecteur;

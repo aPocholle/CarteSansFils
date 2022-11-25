@@ -135,6 +135,20 @@ void Fenetre::on_buton_Charger_clicked()
         }
     }
 }
+
+void Fenetre::on_but_Restore_clicked()
+{
+    RF_Power_Control(&MonLecteur, TRUE, 0);
+    status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
+    if (status != MI_OK){
+            qDebug() << "No available tag in RF field";
+        }
+    else{
+        qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
+        buzzer();
+        backup();
+    }
+}
 //---------------------------------------------------------------------------------------------------------------------//
 void Fenetre::buzzer(){
     status = LEDBuzzer(&MonLecteur, LED_GREEN_ON+LED_YELLOW_ON+LED_RED_ON+LED_GREEN_ON);
@@ -150,8 +164,18 @@ void Fenetre::writing(){
     status = Mf_Classic_Write_Block(&MonLecteur, TRUE, 10, (uint8_t*)DataIn, AuthKeyB, 2);
     sprintf(DataIn,ui->Prenom->toPlainText().toUtf8().data(),16);
     status = Mf_Classic_Write_Block(&MonLecteur, TRUE, 9, (uint8_t*)DataIn, AuthKeyB, 2);
+
+    QString val = "Identité";
+    sprintf(DataIn,val.toUtf8().data(),16);
+    status = Mf_Classic_Write_Block(&MonLecteur, TRUE, 8, (uint8_t*)DataIn, AuthKeyB, 2);
+
+    val = "Porte Monnaie";
+    sprintf(DataIn,val.toUtf8().data(),16);
+    status = Mf_Classic_Write_Block(&MonLecteur, TRUE, 12, (uint8_t*)DataIn, AuthKeyB, 3);
+
     qDebug() << "Informations écritent sur la carte.";
 }
+//---------------------------------------------------------------------------------------------------------------------//
 void Fenetre::reading(){
     char dataText[240] = {0};
     status = Mf_Classic_Read_Block(&MonLecteur, TRUE, 10, (uint8_t*)dataText, AuthKeyA, 2);
@@ -167,6 +191,12 @@ void Fenetre::reading(){
 //---------------------------------------------------------------------------------------------------------------------//
 
 void Fenetre::decrement(uint32_t value){
+    //Recuperation de la valeur backup
+    uint32_t dataNum = 0;
+    status = Mf_Classic_Read_Value(&MonLecteur, TRUE, 14, &dataNum, AuthKeyA, 3);
+    status = Mf_Classic_Write_Value(&MonLecteur, TRUE, 13, dataNum, AuthKeyB, 3);
+
+    // Decrementation
     status = Mf_Classic_Decrement_Value(&MonLecteur, TRUE, 14, value, 14, AuthKeyB, 3);
     if(status == 0){
         ui->NB_unit->setText(QString::number(ui->NB_unit->text().toInt() - value));
@@ -174,9 +204,26 @@ void Fenetre::decrement(uint32_t value){
 }
 
 void Fenetre::increment(uint32_t value){
+    //Recuperation de la valeur backup
+    uint32_t dataNum = 0;
+    status = Mf_Classic_Read_Value(&MonLecteur, TRUE, 14, &dataNum, AuthKeyA, 3);
+    status = Mf_Classic_Write_Value(&MonLecteur, TRUE, 13, dataNum, AuthKeyB, 3);
+
+    // Incrementation
     status = Mf_Classic_Increment_Value(&MonLecteur, TRUE, 14, value, 14, AuthKeyB, 3);
     if(status == 0){
         ui->NB_unit->setText(QString::number(ui->NB_unit->text().toInt() + value));
     }
 }
+
+void Fenetre::backup(){
+    status = Mf_Classic_Restore_Value(&MonLecteur, TRUE, 13, 14, AuthKeyB, 3);
+    if(status == 0){
+        uint32_t dataNum = 0;
+        Mf_Classic_Read_Value(&MonLecteur, TRUE, 14, &dataNum, AuthKeyA, 3);
+        ui->NB_unit->setText(QString::number(dataNum));
+    }
+}
 //---------------------------------------------------------------------------------------------------------------------//
+
+
