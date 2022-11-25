@@ -73,10 +73,7 @@ void Fenetre::on_But_Quit_clicked()
 void Fenetre::on_buton_ID_clicked()
 {
     RF_Power_Control(&MonLecteur, TRUE, 0);
-    while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len)){
-        ui->attente->setText("Attente d'une carte!");
-    };
-    ui->attente->setText("");
+    status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
             qDebug() << "No available tag in RF field";
         }
@@ -94,10 +91,7 @@ void Fenetre::on_buton_Payer_clicked()
     uint32_t value = ui->nb_unit_decr->value();
     if(ui->nb_unit_decr->value() !=0){
         RF_Power_Control(&MonLecteur, TRUE, 0);
-        while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len)){
-            ui->attente->setText("Attente d'une carte!");
-        };
-        ui->attente->setText("");
+        status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
                 qDebug() << "No available tag in RF field";
             }
@@ -114,9 +108,7 @@ void Fenetre::on_but_Carte_clicked()
 {
     RF_Power_Control(&MonLecteur, TRUE, 0);
 
-    while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len)){
-    };
-    ui->attente->setText("");
+    status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
             qDebug() << "No available tag in RF field";
         }
@@ -132,11 +124,7 @@ void Fenetre::on_buton_Charger_clicked()
     uint32_t value = ui->nb_unit_incr->value();
     if(ui->nb_unit_incr->value() !=0){
         RF_Power_Control(&MonLecteur, TRUE, 0);
-        ui->attente->setText("Attente d'une carte!");
-        while(ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len)){
-
-        };
-        ui->attente->setText("");
+        status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
                 qDebug() << "No available tag in RF field";
             }
