@@ -137,11 +137,11 @@ void Fenetre::on_buton_ID_clicked()
 
     //Prenom
     sprintf(DataIn, ui->Prenom->toPlainText().toUtf8().data(), 16);
-    Mf_Classic_Write_Block(&MonLecteur, TRUE, 9, (uint8_t*)DataIn, AuthKeyA, 2);
+    Mf_Classic_Write_Block(&MonLecteur, TRUE, 9, (uint8_t*)DataIn, AuthKeyB, 2);
 
     //Identité
     sprintf(DataIn, ui->Identite->title().toUtf8().data(), 16);
-    Mf_Classic_Write_Block(&MonLecteur, TRUE, 8, (uint8_t*)DataIn, AuthKeyA, 2);
+    Mf_Classic_Write_Block(&MonLecteur, TRUE, 8, (uint8_t*)DataIn, AuthKeyB, 2);
 
     qDebug() << "info";
 
