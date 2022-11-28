@@ -36,7 +36,7 @@ void Fenetre::on_But_Con_clicked()
         if(status == 0){
             sT = true;
             status = RF_Power_Control(&MonLecteur, TRUE, 0);
-
+            buzzer();
             status = Version(&MonLecteur);
             ui->Affichage->setText(MonLecteur.version);
             ui->Affichage->update();
