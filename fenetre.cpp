@@ -32,25 +32,24 @@ void Fenetre::on_But_Con_clicked()
         MonLecteur.Type = ReaderCDC;
         MonLecteur.device = 0;
         status = OpenCOM(&MonLecteur);
-        if(status == 0){
-            sT = true;
-        }
-        status = RF_Power_Control(&MonLecteur, TRUE, 0);
-        if(status == 0){
-            sT = true;
-        }
-        qDebug() << "Connecté";
-        status = Version(&MonLecteur);
-        ui->Affichage->setText(MonLecteur.version);
-        ui->Affichage->update();
 
-        status = Version(&MonLecteur);
-            if (status == MI_OK){
-                qDebug() << "Reader firwmare is " << MonLecteur.version;
-                qDebug() << "Reader serial is " << MonLecteur.serial[0] << MonLecteur.serial[1] << MonLecteur.serial[2] << MonLecteur.serial[3];
-                qDebug() << "Reader stack is " << MonLecteur.stack;
-            }
-         status = LEDBuzzer(&MonLecteur, LED_RED_ON);
+        if(status == 0){
+            sT = true;
+            status = RF_Power_Control(&MonLecteur, TRUE, 0);
+
+            status = Version(&MonLecteur);
+            ui->Affichage->setText(MonLecteur.version);
+            ui->Affichage->update();
+
+            status = Version(&MonLecteur);
+                if (status == MI_OK){
+                    qDebug() << "Reader firwmare is " << MonLecteur.version;
+                    qDebug() << "Reader serial is " << MonLecteur.serial[0] << MonLecteur.serial[1] << MonLecteur.serial[2] << MonLecteur.serial[3];
+                    qDebug() << "Reader stack is " << MonLecteur.stack;
+                }
+                qDebug() << "Connecté";
+             status = LEDBuzzer(&MonLecteur, LED_RED_ON);
+        }
     }
 }
 void Fenetre::on_but_Disc_clicked()
@@ -58,11 +57,14 @@ void Fenetre::on_but_Disc_clicked()
 
     status = RF_Power_Control(&MonLecteur, FALSE, 0);
     if(status == 0){
+        sT = false;
+        buzzer();
+        status = CloseCOM(&MonLecteur);
         qDebug() << "Deconnecté";
         ui->Affichage->setText("");
         ui->Affichage->update();
         status = LEDBuzzer(&MonLecteur, LED_GREEN_ON);
-        buzzer();
+
     }
 
 }
@@ -87,7 +89,7 @@ void Fenetre::on_buton_ID_clicked()
 {
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "Pas de carte a lire";
+            qDebug() << "Pas de carte à lire";
         }
     else{
         qDebug() << "Mise à jour des informations de la carte.";
@@ -104,7 +106,7 @@ void Fenetre::on_buton_Payer_clicked()
     if(ui->nb_unit_decr->value() !=0){
         status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
-                qDebug() << "Pas de carte a lire";
+                qDebug() << "Pas de carte à lire";
             }
         else{
             qDebug() << "Décrément de" << value << "voyages.";
@@ -120,7 +122,7 @@ void Fenetre::on_but_Carte_clicked()
 
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "Pas de carte a lire";
+            qDebug() << "Pas de carte à lire";
         }
     else{
         qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
@@ -135,7 +137,7 @@ void Fenetre::on_buton_Charger_clicked()
     if(ui->nb_unit_incr->value() !=0){
         status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
-                qDebug() << "Pas de carte a lire";
+                qDebug() << "Pas de carte à lire";
             }
         else{
             qDebug() << "Ajout de" << value << "voyages.";
@@ -149,10 +151,10 @@ void Fenetre::on_but_Restore_clicked()
 {
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "Pas de carte a lire";
+            qDebug() << "Pas de carte à lire";
         }
     else{
-        qDebug() << "Information restoré";
+        qDebug() << "Informations restorées";
         buzzer();
         backup();
     }
@@ -233,7 +235,3 @@ void Fenetre::backup(){
     }
 }
 //---------------------------------------------------------------------------------------------------------------------//
-
-
-
-
