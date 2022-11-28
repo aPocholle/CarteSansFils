@@ -35,12 +35,11 @@ void Fenetre::on_But_Con_clicked()
         if(status == 0){
             sT = true;
         }
-        if(sT){
-            qDebug() << "Connecté";
+        status = RF_Power_Control(&MonLecteur, TRUE, 0);
+        if(status == 0){
+            sT = true;
         }
-        else{
-            qDebug() << "Deconnecté";
-        }
+        qDebug() << "Connecté";
         status = Version(&MonLecteur);
         ui->Affichage->setText(MonLecteur.version);
         ui->Affichage->update();
@@ -54,11 +53,25 @@ void Fenetre::on_But_Con_clicked()
          status = LEDBuzzer(&MonLecteur, LED_RED_ON);
     }
 }
+void Fenetre::on_but_Disc_clicked()
+{
+
+    status = RF_Power_Control(&MonLecteur, FALSE, 0);
+    if(status == 0){
+        qDebug() << "Deconnecté";
+        ui->Affichage->setText("");
+        ui->Affichage->update();
+        status = LEDBuzzer(&MonLecteur, LED_GREEN_ON);
+        buzzer();
+    }
+
+}
 //---------------------------------------------------------------------------------------------------------------------//
 void Fenetre::on_But_Quit_clicked()
 {
-    int16_t status = MI_OK;
-    RF_Power_Control(&MonLecteur, TRUE, 0);
+
+    RF_Power_Control(&MonLecteur, FALSE, 0);
+
     for(int i = 0; i < 3; i++){
         status = LEDBuzzer(&MonLecteur, LED_GREEN_ON+LED_YELLOW_ON+LED_RED_ON+LED_GREEN_ON);
         DELAYS_MS(75);
@@ -72,13 +85,12 @@ void Fenetre::on_But_Quit_clicked()
 //---------------------------------------------------------------------------------------------------------------------//
 void Fenetre::on_buton_ID_clicked()
 {
-    RF_Power_Control(&MonLecteur, TRUE, 0);
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "No available tag in RF field";
+            qDebug() << "Pas de carte a lire";
         }
     else{
-        qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
+        qDebug() << "Mise à jour des informations de la carte.";
         buzzer();
         writing();
 
@@ -90,13 +102,12 @@ void Fenetre::on_buton_Payer_clicked()
 {
     uint32_t value = ui->nb_unit_decr->value();
     if(ui->nb_unit_decr->value() !=0){
-        RF_Power_Control(&MonLecteur, TRUE, 0);
         status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
-                qDebug() << "No available tag in RF field";
+                qDebug() << "Pas de carte a lire";
             }
         else{
-            qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
+            qDebug() << "Décrément de" << value << "voyages.";
             buzzer();
             decrement(value);
         }
@@ -106,11 +117,10 @@ void Fenetre::on_buton_Payer_clicked()
 //---------------------------------------------------------------------------------------------------------------------//
 void Fenetre::on_but_Carte_clicked()
 {
-    RF_Power_Control(&MonLecteur, TRUE, 0);
 
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "No available tag in RF field";
+            qDebug() << "Pas de carte a lire";
         }
     else{
         qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
@@ -123,13 +133,12 @@ void Fenetre::on_buton_Charger_clicked()
 {
     uint32_t value = ui->nb_unit_incr->value();
     if(ui->nb_unit_incr->value() !=0){
-        RF_Power_Control(&MonLecteur, TRUE, 0);
         status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
         if (status != MI_OK){
-                qDebug() << "No available tag in RF field";
+                qDebug() << "Pas de carte a lire";
             }
         else{
-            qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
+            qDebug() << "Ajout de" << value << "voyages.";
             buzzer();
             increment(value);
         }
@@ -138,13 +147,12 @@ void Fenetre::on_buton_Charger_clicked()
 
 void Fenetre::on_but_Restore_clicked()
 {
-    RF_Power_Control(&MonLecteur, TRUE, 0);
     status = ISO14443_3_A_PollCard(&MonLecteur, atq, sak, uid, &uid_len);
     if (status != MI_OK){
-            qDebug() << "No available tag in RF field";
+            qDebug() << "Pas de carte a lire";
         }
     else{
-        qDebug() << "Carte numéro: " << uid[0] << uid[1] << uid[2] << uid[3];
+        qDebug() << "Information restoré";
         buzzer();
         backup();
     }
@@ -225,5 +233,7 @@ void Fenetre::backup(){
     }
 }
 //---------------------------------------------------------------------------------------------------------------------//
+
+
 
 

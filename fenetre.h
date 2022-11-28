@@ -45,6 +45,8 @@ private slots:
 
     void on_but_Restore_clicked();
 
+    void on_but_Disc_clicked();
+
 private:
     ReaderName MonLecteur;
     boolean sT = false;
